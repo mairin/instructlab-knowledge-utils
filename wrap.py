@@ -15,9 +15,9 @@ def wrap_text(input_file, width=72):
             wrapped_lines.append(wrapped_paragraph)
 
     wrapped_content = '\n\n'.join(wrapped_lines)
-   
-    output_file_tuple = os.path.splitext(input_file)
-    output_file = f"{output_file_tuple[0]}.wrap{output_file_tuple[1]}"
+    
+    os.rename(input_file, f"{input_file}.old")
+    output_file = input_file
     with open(output_file, 'w') as file:
         file.write(wrapped_content)
 
