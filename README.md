@@ -188,4 +188,5 @@ Then I'll have the following layout in my `swifties` dir:
 - [ ] Add the ability to pass in a custom value for line length to wrap to in `wrap.py` (even though 72 is the best one to use for InstructLab knowledge right now!) Who knows, maybe someday this would be useful. Hardcoded values like this sometimes are annoying and nice to allow customization for.
 - [ ] Refactor `wikipedia-attribution-gen.py` to use a more robust wikipedia API library like [`pywikipediabot`](http://www.mediawiki.org/wiki/Manual:Pywikipediabot). This could be friendlier for large batches hitting wikipedia's API, to do proper rate-limiting etc. to not burden wikipedia when run.
 - [ ] Help me figure out how to get this added as a pypi package maybe? (?)
+- [ ] Clean up my rather garrulous and detailed documentation here 
 
