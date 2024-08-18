@@ -128,6 +128,60 @@ python3 wrap.py Magheracloone.md
 ```
 Will output a `Maghercloone.md` that is wrapped at 72 words per line as well as a `Magheracloone.md.old` which is the original file that did not have wrapping lines.
 
+# Where do I get the markdown files from Wikipedia from?
+
+There is a fantastic little tool that @erictherobot wrote called [`wikipedia-markdown-generator`](https://github.com/erictherobot/wikipedia-markdown-generator). You can pass in a wikipedia article name and it will:
+
+- Use the `wikipedia` python package to grab the article contents from the wikipedia API, strip it of tables and other markup
+- Create a `*.md` file for the content
+
+They won't be wrapped at 72, which is why you need the `wrap.py` utility here. 
+
+I used [`wikipedia-markdown-generator`](https://github.com/erictherobot/wikipedia-markdown-generator) to create the markdown files in [`irish-knowledge`](https://github.com/mairin/irish-knowledge/), which I used to build and test the utilities I wrote in this repo. :) It is a great companion tool.
+
+# 🐶 Suggested InstructLab Wikipedia Knowledge Generation Workflow
+
+## Generate markdown file form Wikipedia
+
+Clone @erictherobot 's [wikipedia-markdown-generator tool](https://github.com/erictherobot/wikipedia-markdown-generator) (MIT-licensed):
+
+```
+git clone https://github.com/erictherobot/wikipedia-markdown-generator.git
+```
+`cd` to the checkout directory and run the `wiki-to-md.py` utility like so:
+
+```
+$ python3 wiki-to-md.py Swifties
+```
+
+This generates a `Swifties.md` in the `md_output` directory of my `wikipedia-markdown-generator` checkout dir.
+
+## Wrap the markdown file line width at 72 
+
+Use the `wrap.py` utility provided here to wrap the markdown:
+
+```
+$ python3 wrap.py md_output/Swifties.md
+```
+
+## Create a directory structure and generate `attribution.txt`
+
+I would then move my wrapped `Swifties.md` into a fresh git repo and run the `make-knowledge-node-dirs.sh` script provided in this repo to create a directory structure for it and to generate the `attribution.txt`:
+
+```
+git init pop_music
+cd pop_music
+mv ~/wikipedia-markdown-generator/md_output/Swifties.md .
+~/instructlab-knowledge-utils/make-knowledge-node-dirs.sh
+```
+
+Then I'll have the following layout in my `swifties` dir:
+```
+- pop_music
+  - swifties
+    - attribution.txt
+    - Swifties.md
+```
 
 # Want to halp?
 
