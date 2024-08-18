@@ -108,3 +108,30 @@ knowledge
   - attribution.txt
   - galway.md
 ```
+
+## ↩️ 3. **`wrap.py`**
+*🐍 Python script*
+
+Small python script to wrap text at X characters. Actually, it's hard-coded to 72 characters. Because, 80 characters is the max width of knowledge yaml files, but because of the level you'll need to indent knowledge content into InstructLab knowledge yaml files, you'll actually need to wrap your knowledge `*.md` files at 72. That way you can copy/paste the context to exactly match your original `*.md` file in the yaml without having the yaml's line-width get blown out.
+
+What the what? [Check out the InstructLab knowledge yaml documentation](https://github.com/instructlab/taxonomy?tab=readme-ov-file#getting-started-with-knowledge-contributions) for more detail on how this all works. :)
+
+How do you use this tool?
+
+```
+python3 wrap.py <input_file>
+```
+Where <input_file> is the name of a markdown (`*.md`) file. The utility will output the `*.md` file wrapped to 72 characters to the original filename. It will make a copy of the original file you passed into it named `*.md.old`. For example:
+
+```
+python3 wrap.py Magheracloone.md
+```
+Will output a `Maghercloone.md` that is wrapped at 72 words per line as well as a `Magheracloone.md.old` which is the original file that did not have wrapping lines.
+
+
+# Want to halp?
+
+- [ ] Add the ability to pass in a custom value for line length to wrap to in `wrap.py` (even though 72 is the best one to use for InstructLab knowledge right now!) Who knows, maybe someday this would be useful. Hardcoded values like this sometimes are annoying and nice to allow customization for.
+- [ ] Refactor `wikipedia-attribution-gen.py` to use a more robust wikipedia API library like [`pywikipediabot`](http://www.mediawiki.org/wiki/Manual:Pywikipediabot). This could be friendlier for large batches hitting wikipedia's API, to do proper rate-limiting etc. to not burden wikipedia when run.
+- [ ] Help me figure out how to get this added as a pypi package maybe? (?)
+
